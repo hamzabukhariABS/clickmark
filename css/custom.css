@@ -1,0 +1,84 @@
+.nav-link {
+  font-weight: 900;
+}
+
+.fa-stack {
+  filter: hue-rotate(163deg);
+}
+
+header.masthead-secondary {
+  padding-top: 6.5rem;
+  padding-bottom: 6rem;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(0deg, rgba(0, 0, 150, 0.1), rgba(0, 0, 150, 0.1)),
+    url("../assets/img/header-bg-2.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.about-us-container {
+  display: flex;
+  gap: 40px;
+}
+
+.about-us-img {
+  max-width: 500px;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 885px) {
+  .about-us-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.service-card {
+  width: 214px;
+  padding: 10px;
+  /* border: 1px solid gray; */
+  border-radius: 19px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.services-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.service-card img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 19px;
+}
+
+.service-card h3 {
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+.service-card p {
+  color: red;
+  font-weight: bold;
+}
+
+.nav-selected {
+  color: #0d6efd;
+}
+
+.contact-us-info {
+  color: white !important;
+  font-style: normal;
+}
