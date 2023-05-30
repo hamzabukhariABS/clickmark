@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>Click Mart LLC</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
@@ -66,6 +66,25 @@
             <li class="nav-item">
               <a class="nav-link" href="./index.html">Contact Us</a>
             </li>
+            <!-- cart icon with count -->
+            <li class="nav-item">
+              <a class="nav-link" href="./cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge rounded-pill badge-notification bg-danger">
+                  <script>
+                    function getCartCount() {
+                      let cart = localStorage.getItem("cart");
+                      if (cart) {
+                        cart = JSON.parse(cart);
+                        return cart.length;
+                      }
+                      return 0;
+                    }
+                    document.write(getCartCount());
+                  </script>
+                </span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -85,51 +104,116 @@
             <img src="assets/img/services/1.webp" alt="..." class="img-fluid" />
             <h3>Website Design</h3>
             <p>$49.99</p>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Website Design', price:49.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/2.png" alt="..." class="img-fluid" />
             <h3>Front-End Development</h3>
             <p>$69.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Front-End Development', price:69.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/3.avif" alt="..." class="img-fluid" />
             <h3>Back-End Development</h3>
             <p>$99.99</p>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Back-End Development', price:99.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/2.png" alt="..." class="img-fluid" />
             <h3>Responsive Web Design</h3>
             <p>$119.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Responsive Web Design', price:119.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/4.png" alt="..." class="img-fluid" />
             <h3>Content Management System (CMS) Development</h3>
             <p>$149.49</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Content Management System (CMS) Development', price:149.49})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/5.webp" alt="..." class="img-fluid" />
             <h3>E-commerce Development</h3>
             <p>179.99</p>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'E-commerce Development', price:179.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/6.jpg" alt="..." class="img-fluid" />
             <h3>Full-Stack Development</h3>
             <p>$199.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Full-Stack Development', price:199.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/7.png" alt="..." class="img-fluid" />
             <h3>Website Maintenance and Support</h3>
             <p>$219.99</p>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Website Maintenance and Support', price:219.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/8.png" alt="..." class="img-fluid" />
             <h3>Web Hosting and Maintenance</h3>
             <p>$249.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Web Hosting and Maintenance', price:249.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/9.webp" alt="..." class="img-fluid" />
             <h3>Web Analytics</h3>
             <p>$299.99</p>
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Web Analytics', price:299.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img
@@ -139,16 +223,37 @@
             />
             <h3>User Experience (UX) Design</h3>
             <p>$319.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'User Experience (UX) Design', price:319.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/11.png" alt="..." class="img-fluid" />
             <h3>Website Security</h3>
             <p>$349.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Website Security', price:349.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/12.png" alt="..." class="img-fluid" />
             <h3>Mobile App Development</h3>
             <p>$449.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Mobile App Development', price:449.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img
@@ -158,6 +263,13 @@
             />
             <h3>Digital Marketing Integration</h3>
             <p>$599.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Digital Marketing Integration', price:599.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img
@@ -167,16 +279,37 @@
             />
             <h3>Website Performance Optimization</h3>
             <p>$549.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Website Performance Optimization', price:549.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/15.png" alt="..." class="img-fluid" />
             <h3>Website Accessibility</h3>
             <p>$599.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'Website Accessibility', price:599.99})"
+            >
+              Add to Cart
+            </button>
           </div>
           <div class="service-card">
             <img src="assets/img/services/16.jpg" alt="..." class="img-fluid" />
             <h3>API Development and Integration</h3>
             <p>$699.99</p>
+
+            <button
+              class="btn btn-primary"
+              onclick="addToCart({name: 'API Development and Integration', price:699.99})"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
@@ -219,6 +352,15 @@
               >Refund Policy</a
             >
           </div>
+        </div>
+        <div class="row align-items-center mt-5">
+          <p>We Accept Payments In</p>
+          <img
+            src="https://digitalmediapromollc.us/wp-content/uploads/2023/04/credit-card-logo-1-300x73-1.png"
+            height="100px"
+            width="100%"
+            style="object-fit: contain"
+          />
         </div>
       </div>
     </footer>

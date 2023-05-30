@@ -27,9 +27,34 @@
       rel="stylesheet"
       type="text/css"
     />
+    <style>
+      .total {
+        text-align: right;
+        font-weight: bold;
+      }
+    </style>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
+    <style>
+      .total-amount {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .success-pop {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+        display: none;
+      }
+    </style>
   </head>
   <body id="page-top">
     <!-- Navigation-->
@@ -92,51 +117,102 @@
     <!-- Masthead-->
     <header class="masthead masthead-secondary">
       <div class="container">
-        <div class="masthead-heading text-uppercase mb-0">About Us</div>
+        <div class="masthead-heading text-uppercase mb-0">Checkout</div>
       </div>
     </header>
-    <!-- Services-->
-    <section class="page-section" id="policy">
-      <div class="container">
-        <div class="about-us-container">
-          <div
-            id="panel-33-0-0-0"
-            class="so-panel widget widget_text panel-first-child panel-last-child"
-            data-index="0"
-          >
-            <h3 class="widget-title">About Us</h3>
-            <div class="textwidget">
-              <p>
-                Click Mart LLC is a leading brand providing quality and value
-                for your web design needs.
-              </p>
-              <p>
-                We are one of the best website development companies providing
-                services like e-publishing, web maintenance services, web
-                design, development services, e-commerce solution services, and
-                much more.
-              </p>
-              <p>
-                We offer a wide range of services from website design, website
-                development, mobile applications, web applications, digital
-                marketing, E-commerce, and E-learning with customized
-                frameworks.
-              </p>
-            </div>
-          </div>
-          <div class="img-fluid about-us-img">
-            <img
-              src="https://assets-global.website-files.com/6410ebf8e483b5bb2c86eb27/6410ebf8e483b53d6186fc53_ABM%20College%20Web%20developer%20main.jpg"
-              alt="About Us"
-              width="100%"
-              height="auto"
-            />
-          </div>
+    <div class="container">
+      <h1 class="mt-4">Checkout</h1>
+
+      <form id="checkoutForm">
+        <div class="form-group mt-3">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" required />
         </div>
+        <div class="form-group mt-3">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" required />
+        </div>
+        <div class="form-group mt-3">
+          <label for="address">Address:</label>
+          <input type="text" class="form-control" id="address" required />
+        </div>
+        <div class="form-group mt-3">
+          <label for="city">City:</label>
+          <input type="text" class="form-control" id="city" required />
+        </div>
+        <div class="form-group mt-3">
+          <label for="country">Country:</label>
+          <input type="text" class="form-control" id="country" required />
+        </div>
+        <div class="total-amou mt-3nt mt-3 mb-3 text-lg">
+          Total Amount: <span id="totalAmount"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Complete Checkout</button>
+      </form>
+
+      <div class="success-pop" id="successPop">
+        <h4>Thank you for your purchase!</h4>
+        <p>Your order has been successfully placed.</p>
       </div>
-    </section>
+    </div>
+
+    <script>
+      // Retrieve cart items from local storage
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Get form and success pop-up elements
+      const checkoutForm = document.querySelector("#checkoutForm");
+      const successPop = document.querySelector("#successPop");
+
+      // Calculate total amount and update the HTML element
+      function calculateTotalAmount() {
+        let totalAmount = 0;
+
+        cartItems.forEach((item) => {
+          totalAmount += parseFloat(item.price);
+        });
+
+        document.querySelector("#totalAmount").textContent =
+          totalAmount.toFixed(2);
+      }
+
+      // Remove all items from the cart
+      function clearCart() {
+        localStorage.removeItem("cart");
+      }
+
+      // Show success pop-up message
+      function showSuccessPop() {
+        successPop.style.display = "block";
+        setTimeout(function () {
+          successPop.style.display = "none";
+        }, 3000);
+      }
+
+      // Handle form submission
+      checkoutForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form field values
+        const name = document.querySelector("#name").value;
+        const email = document.querySelector("#email").value;
+        const address = document.querySelector("#address").value;
+        const city = document.querySelector("#city").value;
+        const country = document.querySelector("#country").value;
+
+        // Perform any necessary form validation and processing here
+
+        // Clear cart, show success message, and reset form
+        clearCart();
+        showSuccessPop();
+        checkoutForm.reset();
+      });
+
+      // Calculate total amount on page load
+      calculateTotalAmount();
+    </script>
     <!-- Footer-->
-    <footer class="footer py-4 bg-black text-white">
+    <footer class="footer py-4 bg-black text-white mt-5">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-4 text-lg-start">

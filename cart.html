@@ -27,6 +27,12 @@
       rel="stylesheet"
       type="text/css"
     />
+    <style>
+      .total {
+        text-align: right;
+        font-weight: bold;
+      }
+    </style>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
@@ -92,48 +98,102 @@
     <!-- Masthead-->
     <header class="masthead masthead-secondary">
       <div class="container">
-        <div class="masthead-heading text-uppercase mb-0">About Us</div>
+        <div class="masthead-heading text-uppercase mb-0">Cart</div>
       </div>
     </header>
     <!-- Services-->
     <section class="page-section" id="policy">
       <div class="container">
-        <div class="about-us-container">
-          <div
-            id="panel-33-0-0-0"
-            class="so-panel widget widget_text panel-first-child panel-last-child"
-            data-index="0"
-          >
-            <h3 class="widget-title">About Us</h3>
-            <div class="textwidget">
-              <p>
-                Click Mart LLC is a leading brand providing quality and value
-                for your web design needs.
-              </p>
-              <p>
-                We are one of the best website development companies providing
-                services like e-publishing, web maintenance services, web
-                design, development services, e-commerce solution services, and
-                much more.
-              </p>
-              <p>
-                We offer a wide range of services from website design, website
-                development, mobile applications, web applications, digital
-                marketing, E-commerce, and E-learning with customized
-                frameworks.
-              </p>
-            </div>
-          </div>
-          <div class="img-fluid about-us-img">
-            <img
-              src="https://assets-global.website-files.com/6410ebf8e483b5bb2c86eb27/6410ebf8e483b53d6186fc53_ABM%20College%20Web%20developer%20main.jpg"
-              alt="About Us"
-              width="100%"
-              height="auto"
-            />
-          </div>
-        </div>
+        <h1 class="mt-4">Shopping Cart</h1>
+
+        <table class="table mt-4">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="cartTable">
+            <!-- Items will be dynamically added here -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="total">Total Amount:</td>
+              <td id="totalAmount"></td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <button class="btn btn-primary" id="checkoutButton">Checkout</button>
       </div>
+      <script>
+        // Retrieve cart items from local storage
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Get table body and total amount element
+        const tableBody = document.querySelector("#cartTable");
+        const totalAmountElement = document.querySelector("#totalAmount");
+        const checkoutButton = document.querySelector("#checkoutButton");
+
+        // Function to render the cart items
+        function renderCartItems() {
+          // Clear the table body
+          tableBody.innerHTML = "";
+
+          let totalAmount = 0;
+
+          // Iterate over each cart item
+          cartItems.forEach((item, index) => {
+            // Create a new row
+            const row = document.createElement("tr");
+
+            // Create cells for item name, price, and remove button
+            const nameCell = document.createElement("td");
+            nameCell.textContent = item.name;
+            const priceCell = document.createElement("td");
+            priceCell.textContent = item.price;
+            const actionCell = document.createElement("td");
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            removeButton.classList.add("btn", "btn-danger", "btn-sm");
+            removeButton.addEventListener("click", () => {
+              removeItem(index);
+            });
+
+            // Add cells to the row
+            row.appendChild(nameCell);
+            row.appendChild(priceCell);
+            actionCell.appendChild(removeButton);
+            row.appendChild(actionCell);
+
+            // Add row to the table body
+            tableBody.appendChild(row);
+
+            // Update the total amount
+            totalAmount += parseFloat(item.price);
+          });
+
+          // Set the total amount text
+          totalAmountElement.textContent = totalAmount.toFixed(2);
+        }
+
+        // Function to remove an item from the cart
+        function removeItem(index) {
+          cartItems.splice(index, 1);
+          localStorage.setItem("cart", JSON.stringify(cartItems));
+          renderCartItems();
+        }
+
+        // Checkout button event listener
+        checkoutButton.addEventListener("click", () => {
+          window.location.href = "checkout.html";
+        });
+
+        // Render the cart items on page load
+        renderCartItems();
+      </script>
     </section>
     <!-- Footer-->
     <footer class="footer py-4 bg-black text-white">
