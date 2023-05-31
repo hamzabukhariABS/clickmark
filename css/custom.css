@@ -91,9 +91,12 @@ header.masthead-secondary {
   border: none;
   font-weight: bold;
   width: 100%;
+  transition: all 0.3s ease-in-out;
 }
 
 .add-to-card-btn:hover {
+  transition: all 0.3s ease-in-out;
+
   background-color: #0d6dfd65;
   color: rgb(46, 46, 46);
   border-radius: 20px;
