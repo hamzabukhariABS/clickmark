@@ -149,6 +149,50 @@
           <input type="text" class="form-control" id="zip" required />
         </div>
 
+        <!-- Your order and order detsils get cart data from local storage -->
+        <h3 class="mt-4">Your Order</h3>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody id="cartItems">
+              <script>
+                function getCartItems() {
+                  let cart = localStorage.getItem("cart");
+                  if (cart) {
+                    cart = JSON.parse(cart);
+                    let html = "";
+                    let total = 0;
+                    cart.forEach((item) => {
+                      html += `<tr>
+                        <td>${item.name}</td>
+                        <td>$${item.price}</td>
+                      </tr>`;
+                      total += item.price;
+                    });
+                    html += `<tr>
+                      <td colspan="1" class="total text-start">Subtotal</td>
+                      <td class="total  text-start text-danger">$${total}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="1" class="total text-start">Total</td>
+                      <td class="total  text-start">$${total}</td>
+                    </tr>
+                    
+                    `;
+                    document.getElementById("cartItems").innerHTML = html;
+                  }
+                }
+                getCartItems();
+              </script>
+            </tbody>
+          </table>
+        </div>
+
         <h3 class="mt-4">Payment Details</h3>
         <div class="form-group mt-3">
           <label for="cardName">Name on Card:</label>
@@ -215,12 +259,42 @@
           ></textarea>
         </div>
 
-        <div class="total-amou mt-3nt mt-3 mb-3 text-lg">
-          Total Amount: <span id="totalAmount"></span>
+        <p>
+          Your personal data will be used to process your order, support your
+          experience throughout this website, and for other purposes described
+          in our privacy policy.
+        </p>
+
+        <!-- check box to accept terms and conditions -->
+        <div class="mb-3">
+          <input type="checkbox" name="terms" id="terms" required />
+
+          <label for="terms"
+            >I Have Read And Agree To The
+            <a href="./terms">Website Terms And Conditions</a>
+            <span class="text-danger">*</span></label
+          >
         </div>
+
         <button type="submit" class="btn btn-primary mb-5">
           Complete Checkout
         </button>
+
+        <p class="mb-5">
+          Please note that the transaction description on your card will be
+          http://clickmartllc.com/
+          <br />
+          All the plan services will be provided to the customer digitally via
+          Internet.
+          <br />
+          Please make sure to enter the correct email address while making the
+          payment because the template will be sent on the same email provided
+          to us.
+          <br />
+          After the payment has been made the downloadable link will be sent
+          within 24 hours on the email address entered during the checkout.
+        </p>
+        <p class="mb-5 text-white">ss</p>
       </form>
 
       <div class="success-pop" id="successPop">
@@ -228,6 +302,13 @@
         <p>Your order has been successfully placed.</p>
       </div>
     </div>
+
+    <!-- Descritions 
+      Please note that the transaction description on your card will be digitalmediapromollc.us
+All the plan services will be provided to the customer digitally via Internet.
+Please make sure to enter the correct email address while making the payment because the template will be sent on the same email provided to us.
+After the payment has been made the downloadable link will be sent within 24 hours on the email address entered during the checkout.
+    -->
 
     <script>
       // Retrieve cart items from local storage
